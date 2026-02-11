@@ -11,7 +11,7 @@ export const GET_POKEMON_LIST = gql`
 
 export const GET_POKEMON_DETAIL = gql`
   query GetPokemonDetail($id: Int!) {
-    pokemon: pokemon_v2_pokemon_by_pk(id: $id) {
+    pokemon: pokemon_v2_pokemon(where: {id: {_eq: $id}}) {
       id
       name
       height

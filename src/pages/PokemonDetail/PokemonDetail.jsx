@@ -26,7 +26,7 @@ const PokemonDetail = () => {
     </div>
   );
 
-  const pokemon = data?.pokemon;
+  const pokemon = data?.pokemon?.[0];
   if (!pokemon) return null;
 
   const mainType = pokemon.pokemon_types[0]?.type.name || 'normal';
