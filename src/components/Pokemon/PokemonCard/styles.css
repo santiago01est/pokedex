@@ -1,0 +1,85 @@
+.pokemon-card-v2 {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 104 / 108;
+    cursor: pointer;
+    padding: 0;
+    /* Remove padding to let the bg fit perfectly */
+    overflow: hidden;
+    /* Ensure rounded corners on the background div */
+    transition: transform 0.2s ease;
+}
+
+.pokemon-card-v2:hover {
+    transform: translateY(-4px);
+}
+
+.pokemon-card-v2 .favorite-btn-star {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 10;
+}
+
+.card-id {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 10px;
+    color: #666;
+    font-weight: 400;
+    z-index: 10;
+}
+
+.card-image-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.pokemon-card-image {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+    z-index: 5;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+}
+
+.card-image-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    /* Half-ish area from bottom like in the images */
+    background-color: #EFEFEF;
+    border-radius: 8px 8px 0 0;
+    /* Top rounded as per reference */
+    z-index: 1;
+}
+
+.card-footer {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EFEFEF;
+    /* Matches the bottom part of the image */
+    width: 100%;
+    padding-bottom: 4px;
+}
+
+.pokemon-card-name {
+    font-size: 12px;
+    color: #1D1D1D;
+    text-transform: capitalize;
+    font-weight: 500;
+}

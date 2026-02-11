@@ -1,0 +1,123 @@
+.pokedex-header {
+    background-color: var(--pokedex-red);
+    padding: 16px 16px 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pokeball-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-title {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-actions-btns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.nav-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #DC0A2D;
+}
+
+.fav-toggle-btn {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.fav-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #DC0A2D;
+}
+
+.fav-toggle-btn.active {
+    background-color: #f8f9fa;
+    transform: scale(0.95);
+}
+
+.sort-btn {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.sort-icon {
+    color: #DC0A2D;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+@media (max-width: 767px) {
+    .desktop-only {
+        display: none;
+    }
+}
+
+.sort-btn:active {
+    transform: scale(0.95);
+}

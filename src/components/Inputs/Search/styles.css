@@ -1,0 +1,60 @@
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    gap: 12px;
+    width: 100%;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.25);
+    height: 40px;
+    position: relative;
+}
+
+.search-error {
+    position: absolute;
+    bottom: -20px;
+    left: 20px;
+    font-size: 10px;
+    color: white;
+    /* Contrast against red header */
+    font-weight: 500;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    color: var(--pokedex-red);
+    width: 18px;
+    height: 18px;
+}
+
+.search-input {
+    border: none;
+    background: none;
+    width: 100%;
+    font-size: 14px;
+    color: #666;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #AAA;
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    color: #AAA;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.clear-btn:hover {
+    color: var(--pokedex-red);
+}
