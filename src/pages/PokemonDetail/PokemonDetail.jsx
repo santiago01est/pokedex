@@ -30,6 +30,9 @@ const PokemonDetail = () => {
   if (!pokemon) return null;
 
   const mainType = pokemon.pokemontypes[0]?.type.name || 'normal';
+  const apiColor = pokemon.pokemonspecy?.pokemoncolor?.name || mainType;
+  const themeColor = apiColor; // We can use one or the other
+
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
   
   const flavorText = pokemon.pokemonspecy?.pokemonspeciesflavortexts[0]?.flavor_text.replace(/\f/g, ' ') || '';
@@ -44,7 +47,7 @@ const PokemonDetail = () => {
   };
 
   return (
-    <div className={`pokemon-detail-page type-${mainType}`}>
+    <div className={`pokemon-detail-page theme-${themeColor}`}>
       <header className="detail-header">
         <button className="back-btn" onClick={() => navigate('/')}>
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
@@ -83,7 +86,7 @@ const PokemonDetail = () => {
         </div>
 
         <section className="about-section">
-          <h2 className={`section-title color-${mainType}`}>About</h2>
+          <h2 className={`section-title color-${themeColor}`}>About</h2>
           <div className="about-grid">
             <div className="about-item">
               <div className="item-value">
@@ -120,17 +123,17 @@ const PokemonDetail = () => {
         </section>
 
         <section className="stats-section">
-          <h2 className={`section-title color-${mainType}`}>Base Stats</h2>
+          <h2 className={`section-title color-${themeColor}`}>Base Stats</h2>
           <div className="stats-container">
             {pokemon.pokemonstats.map((s) => (
               <div key={s.stat.name} className="stat-row">
-                <span className={`stat-label color-${mainType}`}>
+                <span className={`stat-label color-${themeColor}`}>
                   {statsMap[s.stat.name] || s.stat.name.toUpperCase()}
                 </span>
                 <span className="stat-value">{String(s.base_stat).padStart(3, '0')}</span>
                 <div className="stat-bar-bg">
                   <div 
-                    className={`stat-bar-fill bg-${mainType}`} 
+                    className={`stat-bar-fill bg-${themeColor}`} 
                     style={{ width: `${(s.base_stat / 255) * 100}%` }}
                   ></div>
                 </div>

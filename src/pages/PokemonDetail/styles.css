@@ -10,76 +10,76 @@
     /* Fallback */
 }
 
-/* Background dynamics based on type */
-.pokemon-detail-page.type-bug {
+/* Background dynamics based on theme (Types or API Colors) */
+.pokemon-detail-page.theme-bug {
     background-color: var(--type-bug);
 }
 
-.pokemon-detail-page.type-dark {
+.pokemon-detail-page.theme-dark {
     background-color: var(--type-dark);
 }
 
-.pokemon-detail-page.type-dragon {
+.pokemon-detail-page.theme-dragon {
     background-color: var(--type-dragon);
 }
 
-.pokemon-detail-page.type-electric {
+.pokemon-detail-page.theme-electric {
     background-color: var(--type-electric);
 }
 
-.pokemon-detail-page.type-fairy {
+.pokemon-detail-page.theme-fairy {
     background-color: var(--type-fairy);
 }
 
-.pokemon-detail-page.type-fighting {
+.pokemon-detail-page.theme-fighting {
     background-color: var(--type-fighting);
 }
 
-.pokemon-detail-page.type-fire {
+.pokemon-detail-page.theme-fire {
     background-color: var(--type-fire);
 }
 
-.pokemon-detail-page.type-flying {
+.pokemon-detail-page.theme-flying {
     background-color: var(--type-flying);
 }
 
-.pokemon-detail-page.type-ghost {
+.pokemon-detail-page.theme-ghost {
     background-color: var(--type-ghost);
 }
 
-.pokemon-detail-page.type-grass {
+.pokemon-detail-page.theme-grass {
     background-color: var(--type-grass);
 }
 
-.pokemon-detail-page.type-ground {
+.pokemon-detail-page.theme-ground {
     background-color: var(--type-ground);
 }
 
-.pokemon-detail-page.type-ice {
+.pokemon-detail-page.theme-ice {
     background-color: var(--type-ice);
 }
 
-.pokemon-detail-page.type-normal {
+.pokemon-detail-page.theme-normal {
     background-color: var(--type-normal);
 }
 
-.pokemon-detail-page.type-poison {
+.pokemon-detail-page.theme-poison {
     background-color: var(--type-poison);
 }
 
-.pokemon-detail-page.type-psychic {
+.pokemon-detail-page.theme-psychic {
     background-color: var(--type-psychic);
 }
 
-.pokemon-detail-page.type-rock {
+.pokemon-detail-page.theme-rock {
     background-color: var(--type-rock);
 }
 
-.pokemon-detail-page.type-steel {
+.pokemon-detail-page.theme-steel {
     background-color: var(--type-steel);
 }
 
-.pokemon-detail-page.type-water {
+.pokemon-detail-page.theme-water {
     background-color: var(--type-water);
 }
 
@@ -464,6 +464,128 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* API Theme Colors */
+.pokemon-detail-page.theme-black {
+    background-color: var(--pokecolor-black);
+}
+
+.pokemon-detail-page.theme-blue {
+    background-color: var(--pokecolor-blue);
+}
+
+.pokemon-detail-page.theme-brown {
+    background-color: var(--pokecolor-brown);
+}
+
+.pokemon-detail-page.theme-gray {
+    background-color: var(--pokecolor-gray);
+}
+
+.pokemon-detail-page.theme-green {
+    background-color: var(--pokecolor-green);
+}
+
+.pokemon-detail-page.theme-pink {
+    background-color: var(--pokecolor-pink);
+}
+
+.pokemon-detail-page.theme-purple {
+    background-color: var(--pokecolor-purple);
+}
+
+.pokemon-detail-page.theme-red {
+    background-color: var(--pokecolor-red);
+}
+
+.pokemon-detail-page.theme-white {
+    background-color: var(--pokecolor-white);
+}
+
+.pokemon-detail-page.theme-yellow {
+    background-color: var(--pokecolor-yellow);
+}
+
+/* API Class Colors */
+.color-black {
+    color: var(--pokecolor-black);
+}
+
+.color-blue {
+    color: var(--pokecolor-blue);
+}
+
+.color-brown {
+    color: var(--pokecolor-brown);
+}
+
+.color-gray {
+    color: var(--pokecolor-gray);
+}
+
+.color-green {
+    color: var(--pokecolor-green);
+}
+
+.color-pink {
+    color: var(--pokecolor-pink);
+}
+
+.color-purple {
+    color: var(--pokecolor-purple);
+}
+
+.color-red {
+    color: var(--pokecolor-red);
+}
+
+.color-white {
+    color: var(--pokecolor-white);
+}
+
+.color-yellow {
+    color: var(--pokecolor-yellow);
+}
+
+.bg-black {
+    background-color: var(--pokecolor-black);
+}
+
+.bg-blue {
+    background-color: var(--pokecolor-blue);
+}
+
+.bg-brown {
+    background-color: var(--pokecolor-brown);
+}
+
+.bg-gray {
+    background-color: var(--pokecolor-gray);
+}
+
+.bg-green {
+    background-color: var(--pokecolor-green);
+}
+
+.bg-pink {
+    background-color: var(--pokecolor-pink);
+}
+
+.bg-purple {
+    background-color: var(--pokecolor-purple);
+}
+
+.bg-red {
+    background-color: var(--pokecolor-red);
+}
+
+.bg-white {
+    background-color: var(--pokecolor-white);
+}
+
+.bg-yellow {
+    background-color: var(--pokecolor-yellow);
 }
 
 @media (min-width: 768px) {

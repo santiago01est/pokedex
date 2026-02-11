@@ -33,6 +33,9 @@ export const GET_POKEMON_DETAIL = gql`
         }
       }
       pokemonspecy {
+        pokemoncolor {
+          name
+        }
         pokemonspeciesflavortexts(where: {language_id: {_eq: 9}}, limit: 1) {
           flavor_text
         }

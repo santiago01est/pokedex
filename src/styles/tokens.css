@@ -64,6 +64,18 @@
     --type-rock: #B69E31;
     --type-steel: #B7B9D0;
     --type-water: #6493EB;
+
+    /* Pokemon Official Colors */
+    --pokecolor-black: #212121;
+    --pokecolor-blue: #257CFF;
+    --pokecolor-brown: #B1736C;
+    --pokecolor-gray: #919191;
+    --pokecolor-green: #74CB48;
+    --pokecolor-pink: #EC8FE6;
+    --pokecolor-purple: #A43E9E;
+    --pokecolor-red: #DC0A2D;
+    --pokecolor-white: #DFE0E0;
+    --pokecolor-yellow: #F9CF30;
 }
 
 @media (prefers-color-scheme: light) {
