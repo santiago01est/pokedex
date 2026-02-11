@@ -11,29 +11,29 @@ export const GET_POKEMON_LIST = gql`
 
 export const GET_POKEMON_DETAIL = gql`
   query GetPokemonDetail($id: Int!) {
-    pokemon: pokemon_v2_pokemon(where: {id: {_eq: $id}}) {
+    pokemon(where: {id: {_eq: $id}}) {
       id
       name
       height
       weight
-      pokemon_types: pokemon_v2_pokemontypes {
-        type: pokemon_v2_type {
+      pokemontypes {
+        type {
           name
         }
       }
-      stats: pokemon_v2_pokemonstats {
+      pokemonstats {
         base_stat
-        stat: pokemon_v2_stat {
+        stat {
           name
         }
       }
-      abilities: pokemon_v2_pokemonabilities {
-        ability: pokemon_v2_ability {
+      pokemonabilities {
+        ability {
           name
         }
       }
-      species: pokemon_v2_pokemonspecy {
-        flavor_texts: pokemon_v2_pokemonflavortexts(where: {language_id: {_eq: 9}}, limit: 1) {
+      pokemonspecy {
+        pokemonspeciesflavortexts(where: {language_id: {_eq: 9}}, limit: 1) {
           flavor_text
         }
       }

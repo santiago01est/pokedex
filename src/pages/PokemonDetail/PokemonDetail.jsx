@@ -29,10 +29,10 @@ const PokemonDetail = () => {
   const pokemon = data?.pokemon?.[0];
   if (!pokemon) return null;
 
-  const mainType = pokemon.pokemon_types[0]?.type.name || 'normal';
+  const mainType = pokemon.pokemontypes[0]?.type.name || 'normal';
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
   
-  const flavorText = pokemon.species?.flavor_texts[0]?.flavor_text.replace(/\f/g, ' ') || '';
+  const flavorText = pokemon.pokemonspecy?.pokemonspeciesflavortexts[0]?.flavor_text.replace(/\f/g, ' ') || '';
 
   const statsMap = {
     hp: 'HP',
@@ -77,7 +77,7 @@ const PokemonDetail = () => {
 
       <main className="detail-card">
         <div className="detail-types">
-          {pokemon.pokemon_types.map((t) => (
+          {pokemon.pokemontypes.map((t) => (
             <TypeBadge key={t.type.name} type={t.type.name} />
           ))}
         </div>
@@ -109,7 +109,7 @@ const PokemonDetail = () => {
             </div>
             <div className="about-item">
               <div className="moves-list">
-                {pokemon.abilities.map(a => (
+                {pokemon.pokemonabilities.map(a => (
                   <span key={a.ability.name} className="move-name">{a.ability.name}</span>
                 ))}
               </div>
@@ -122,7 +122,7 @@ const PokemonDetail = () => {
         <section className="stats-section">
           <h2 className={`section-title color-${mainType}`}>Base Stats</h2>
           <div className="stats-container">
-            {pokemon.stats.map((s) => (
+            {pokemon.pokemonstats.map((s) => (
               <div key={s.stat.name} className="stat-row">
                 <span className={`stat-label color-${mainType}`}>
                   {statsMap[s.stat.name] || s.stat.name.toUpperCase()}

@@ -1,0 +1,1 @@
+id, pokemon, pokemon_id, slot, type, type_id
