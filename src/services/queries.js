@@ -11,20 +11,30 @@ export const GET_POKEMON_LIST = gql`
 
 export const GET_POKEMON_DETAIL = gql`
   query GetPokemonDetail($id: Int!) {
-    pokemon_by_pk(id: $id) {
+    pokemon: pokemon_v2_pokemon_by_pk(id: $id) {
       id
       name
       height
       weight
-      types {
-        type {
+      pokemon_types: pokemon_v2_pokemontypes {
+        type: pokemon_v2_type {
           name
         }
       }
-      # Generation can be tricky depending on the schema, usually related to species
-      pokemon_v2_pokemonspecy {
-        pokemon_v2_generation {
+      stats: pokemon_v2_pokemonstats {
+        base_stat
+        stat: pokemon_v2_stat {
           name
+        }
+      }
+      abilities: pokemon_v2_pokemonabilities {
+        ability: pokemon_v2_ability {
+          name
+        }
+      }
+      species: pokemon_v2_pokemonspecy {
+        flavor_texts: pokemon_v2_pokemonflavortexts(where: {language_id: {_eq: 9}}, limit: 1) {
+          flavor_text
         }
       }
     }
