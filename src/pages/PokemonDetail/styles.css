@@ -6,40 +6,81 @@
     overflow-x: hidden;
     padding: 16px;
     padding-bottom: 24px;
+    background-color: var(--type-normal);
+    /* Fallback */
 }
 
 /* Background dynamics based on type */
-.pokemon-detail-page.type-grass {
-    background-color: var(--type-grass);
-}
-
-.pokemon-detail-page.type-fire {
-    background-color: var(--type-fire);
-}
-
-.pokemon-detail-page.type-water {
-    background-color: var(--type-water);
-}
-
 .pokemon-detail-page.type-bug {
     background-color: var(--type-bug);
+}
+
+.pokemon-detail-page.type-dark {
+    background-color: var(--type-dark);
+}
+
+.pokemon-detail-page.type-dragon {
+    background-color: var(--type-dragon);
 }
 
 .pokemon-detail-page.type-electric {
     background-color: var(--type-electric);
 }
 
-.pokemon-detail-page.type-psychic {
-    background-color: var(--type-psychic);
+.pokemon-detail-page.type-fairy {
+    background-color: var(--type-fairy);
+}
+
+.pokemon-detail-page.type-fighting {
+    background-color: var(--type-fighting);
+}
+
+.pokemon-detail-page.type-fire {
+    background-color: var(--type-fire);
+}
+
+.pokemon-detail-page.type-flying {
+    background-color: var(--type-flying);
+}
+
+.pokemon-detail-page.type-ghost {
+    background-color: var(--type-ghost);
+}
+
+.pokemon-detail-page.type-grass {
+    background-color: var(--type-grass);
+}
+
+.pokemon-detail-page.type-ground {
+    background-color: var(--type-ground);
+}
+
+.pokemon-detail-page.type-ice {
+    background-color: var(--type-ice);
+}
+
+.pokemon-detail-page.type-normal {
+    background-color: var(--type-normal);
 }
 
 .pokemon-detail-page.type-poison {
     background-color: var(--type-poison);
 }
 
-/* Default fallback */
-.pokemon-detail-page {
-    background-color: #74CB48;
+.pokemon-detail-page.type-psychic {
+    background-color: var(--type-psychic);
+}
+
+.pokemon-detail-page.type-rock {
+    background-color: var(--type-rock);
+}
+
+.pokemon-detail-page.type-steel {
+    background-color: var(--type-steel);
+}
+
+.pokemon-detail-page.type-water {
+    background-color: var(--type-water);
 }
 
 .detail-header {
@@ -223,7 +264,7 @@
 }
 
 .stat-label {
-    width: 40px;
+    width: 44px;
     font-size: 12px;
     font-weight: 700;
     border-right: 1px solid #E0E0E0;
@@ -247,39 +288,153 @@
 .stat-bar-fill {
     height: 100%;
     border-radius: 4px;
+    transition: width 0.5s ease-out;
 }
 
-/* Dynamic Colors Utilities */
-.color-grass {
-    color: var(--type-grass);
+/* Dynamic Colors - Use attribute selectors for scalability */
+.color-bug {
+    color: var(--type-bug);
+}
+
+.color-dark {
+    color: var(--type-dark);
+}
+
+.color-dragon {
+    color: var(--type-dragon);
+}
+
+.color-electric {
+    color: var(--type-electric);
+}
+
+.color-fairy {
+    color: var(--type-fairy);
+}
+
+.color-fighting {
+    color: var(--type-fighting);
 }
 
 .color-fire {
     color: var(--type-fire);
 }
 
+.color-flying {
+    color: var(--type-flying);
+}
+
+.color-ghost {
+    color: var(--type-ghost);
+}
+
+.color-grass {
+    color: var(--type-grass);
+}
+
+.color-ground {
+    color: var(--type-ground);
+}
+
+.color-ice {
+    color: var(--type-ice);
+}
+
+.color-normal {
+    color: var(--type-normal);
+}
+
+.color-poison {
+    color: var(--type-poison);
+}
+
+.color-psychic {
+    color: var(--type-psychic);
+}
+
+.color-rock {
+    color: var(--type-rock);
+}
+
+.color-steel {
+    color: var(--type-steel);
+}
+
 .color-water {
     color: var(--type-water);
 }
 
-.bg-grass {
-    background-color: var(--type-grass);
+.bg-bug {
+    background-color: var(--type-bug);
+}
+
+.bg-dark {
+    background-color: var(--type-dark);
+}
+
+.bg-dragon {
+    background-color: var(--type-dragon);
+}
+
+.bg-electric {
+    background-color: var(--type-electric);
+}
+
+.bg-fairy {
+    background-color: var(--type-fairy);
+}
+
+.bg-fighting {
+    background-color: var(--type-fighting);
 }
 
 .bg-fire {
     background-color: var(--type-fire);
 }
 
+.bg-flying {
+    background-color: var(--type-flying);
+}
+
+.bg-ghost {
+    background-color: var(--type-ghost);
+}
+
+.bg-grass {
+    background-color: var(--type-grass);
+}
+
+.bg-ground {
+    background-color: var(--type-ground);
+}
+
+.bg-ice {
+    background-color: var(--type-ice);
+}
+
+.bg-normal {
+    background-color: var(--type-normal);
+}
+
+.bg-poison {
+    background-color: var(--type-poison);
+}
+
+.bg-psychic {
+    background-color: var(--type-psychic);
+}
+
+.bg-rock {
+    background-color: var(--type-rock);
+}
+
+.bg-steel {
+    background-color: var(--type-steel);
+}
+
 .bg-water {
     background-color: var(--type-water);
 }
-
-/* Add more as needed or use a fallback */
-[class*="color-"] {
-    color: #212121;
-}
-
-/* Fallback */
 
 /* Loader */
 .detail-loading-overlay {
@@ -289,13 +444,13 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    background-color: #EFEFEF;
+    background-color: white;
 }
 
 .loader {
     width: 48px;
     height: 48px;
-    border: 5px solid #DC0A2D;
+    border: 5px solid var(--pokedex-red);
     border-bottom-color: transparent;
     border-radius: 50%;
     animation: rotation 1s linear infinite;
@@ -315,13 +470,10 @@
     .pokemon-detail-page {
         padding: 32px;
         align-items: center;
+        justify-content: center;
     }
 
-    .detail-card {
-        max-width: 500px;
-        width: 100%;
-    }
-
+    .detail-card,
     .detail-header,
     .detail-hero {
         max-width: 500px;

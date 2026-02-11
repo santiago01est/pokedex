@@ -44,6 +44,26 @@
 
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Pokemon Types */
+    --type-bug: #A7B723;
+    --type-dark: #75574C;
+    --type-dragon: #7037FF;
+    --type-electric: #F9CF30;
+    --type-fairy: #E69EAC;
+    --type-fighting: #C12239;
+    --type-fire: #F57D31;
+    --type-flying: #A891EC;
+    --type-ghost: #70559B;
+    --type-grass: #74CB48;
+    --type-ground: #DEC16B;
+    --type-ice: #9AD6DF;
+    --type-normal: #AAA67F;
+    --type-poison: #A43E9E;
+    --type-psychic: #FB5584;
+    --type-rock: #B69E31;
+    --type-steel: #B7B9D0;
+    --type-water: #6493EB;
 }
 
 @media (prefers-color-scheme: light) {
