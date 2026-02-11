@@ -240,6 +240,11 @@
     text-align: center;
     height: 32px;
     justify-content: center;
+    color: #1D1D1D;
+}
+
+.move-name {
+    line-height: 1.4;
 }
 
 .detail-description {

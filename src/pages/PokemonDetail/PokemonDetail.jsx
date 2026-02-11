@@ -112,11 +112,11 @@ const PokemonDetail = () => {
             </div>
             <div className="about-item">
               <div className="moves-list">
-                {pokemon.pokemonabilities.map(a => (
-                  <span key={a.ability.name} className="move-name">{a.ability.name}</span>
+                {pokemon.pokemonmoves.map(m => (
+                  <span key={m.move.name} className="move-name">{m.move.name}</span>
                 ))}
               </div>
-              <span className="item-label">Abilities</span>
+              <span className="item-label">Moves</span>
             </div>
           </div>
           <p className="detail-description">{flavorText}</p>

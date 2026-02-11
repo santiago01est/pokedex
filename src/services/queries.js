@@ -27,8 +27,8 @@ export const GET_POKEMON_DETAIL = gql`
           name
         }
       }
-      pokemonabilities {
-        ability {
+      pokemonmoves(limit: 2) {
+        move {
           name
         }
       }
