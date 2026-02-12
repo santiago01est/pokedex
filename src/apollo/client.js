@@ -10,7 +10,7 @@ export const client = new ApolloClient({
         typePolicies: {
             Query: {
                 fields: {
-                    // You can add pagination or other field policies here
+                    //  add pagination or other field policies
                 },
             },
         },

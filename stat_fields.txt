@@ -1,1 +1,0 @@
-base_stat, effort, id, pokemon, pokemon_id, stat, stat_id

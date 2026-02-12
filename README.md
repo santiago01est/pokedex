@@ -23,11 +23,70 @@ This Pokédex offers a smooth, app-like experience to explore the world of Poké
 
 - **Frontend Core**: [React 18+](https://react.dev/) + [Vite](https://vitejs.dev/)
 - **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/) (Global state & Favorites)
-- **Data & API**: [Apollo Client](https://www.apollographql.com/) (consuming the [PokeAPI via GraphQL](https://beta.pokeapi.co/graphql/v1beta))
+- **Data & API**: [Apollo Client](https://www.apollographql.com/) (consuming the [PokeAPI via GraphQL](https://graphql.pokeapi.co/v1beta2))
 - **Routing**: [React Router v6](https://reactrouter.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Styling**: Vanilla CSS (CSS Variables, Flexbox/Grid, Responsive Design)
 - **Testing**: [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/)
+
+## 📡 API Schema & Queries
+
+The application consumes the [PokeAPI via GraphQL](https://graphql.pokeapi.co/v1beta2).
+
+### 1. Get Pokemon List (`GetPokemonList`)
+Fetches a paginated list of Pokemon with basic details for the grid view.
+
+```graphql
+query GetPokemonList($limit: Int, $offset: Int, $where: pokemon_bool_exp, $order_by: [pokemon_order_by!]) {
+  pokemon(limit: $limit, offset: $offset, where: $where, order_by: $order_by) {
+    id
+    name
+    pokemontypes {
+      type {
+        name
+      }
+    }
+  }
+}
+```
+
+### 2. Get Pokemon Detail (`GetPokemonDetail`)
+Fetches detailed information for a specific Pokemon by ID.
+
+```graphql
+query GetPokemonDetail($id: Int!) {
+  pokemon(where: { id: { _eq: $id } }) {
+    id
+    name
+    height
+    weight
+    pokemontypes {
+      type {
+        name
+      }
+    }
+    pokemonstats {
+      base_stat
+      stat {
+        name
+      }
+    }
+    pokemonmoves(limit: 2) {
+      move {
+        name
+      }
+    }
+    pokemonspecy {
+      pokemoncolor {
+        name
+      }
+      pokemonspeciesflavortexts(where: { language_id: { _eq: 9 } }, limit: 1) {
+        flavor_text
+      }
+    }
+  }
+}
+```
 
 ## 🚀 Getting Started
 
