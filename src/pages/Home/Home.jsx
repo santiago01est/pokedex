@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import { useQuery } from '@apollo/client/react';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import { GET_POKEMON_LIST } from '../../services/queries';
 import { validateSearch } from '../../utils/validation';
 import PokemonCard from '../../components/Pokemon/PokemonCard/PokemonCard';
 import Header from '../../components/Layout/Header/Header';
 import SortModal from '../../components/Modals/Sort/SortModal';
+import TypeFilter from '../../components/Inputs/TypeFilter/TypeFilter';
 import BottomNav from '../../components/Layout/BottomNav/BottomNav';
+import Loader from '../../components/ui/Loader/Loader';
 import './Home.css';
 
 export const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchError, setSearchError] = useState(null);
   const [activeQuery, setActiveQuery] = useState('');
+  const [activeType, setActiveType] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
@@ -22,7 +26,12 @@ export const Home = () => {
   const { loading, error, data } = useQuery(GET_POKEMON_LIST, {
     variables: { 
       limit: 151,
-      where: activeQuery ? { name: { _ilike: `%${activeQuery}%` } } : {},
+      where: {
+        _and: [
+          activeQuery ? { name: { _ilike: `%${activeQuery}%` } } : {},
+          activeType ? { pokemontypes: { type: { name: { _eq: activeType } } } } : {}
+        ]
+      },
       order_by: { [sortBy]: 'asc' }
     },
     skip: showFavorites 
@@ -44,18 +53,38 @@ export const Home = () => {
     setSearchQuery('');
     setSearchError(null);
     setActiveQuery('');
+    setActiveType('');
     setShowFavorites(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const displayedFavorites = favoriteItems
-    .filter(p => p.name.toLowerCase().includes(activeQuery.toLowerCase()))
+    .filter(p => {
+      const nameMatch = p.name.toLowerCase().includes(activeQuery.toLowerCase());
+      const typeMatch = activeType ? p.pokemontypes?.some(t => t.type.name === activeType) : true;
+      return nameMatch && typeMatch;
+    })
     .sort((a, b) => {
       if (sortBy === 'name') return a.name.localeCompare(b.name);
       return a.id - b.id;
     });
 
   const pokemonList = showFavorites ? displayedFavorites : (data?.pokemon || []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
     <div className="pokedex-app">
@@ -71,19 +100,41 @@ export const Home = () => {
       
       <main className="pokedex-content">
         <div className="pokedex-inner-container">
-          {loading && !showFavorites && <p className="status-msg">Cargando Pokédex...</p>}
+          <TypeFilter activeType={activeType} onTypeChange={setActiveType} />
+
+          {loading && !showFavorites && <Loader />} 
+          
           {error && !showFavorites && <p className="status-msg error">Error: {error.message}</p>}
           
-          <div className="pokemon-grid-v2">
-            {pokemonList.map((p) => (
-              <PokemonCard key={p.id} pokemon={p} />
-            ))}
-          </div>
+          {(!loading || showFavorites) && (
+            <motion.div 
+              key={`${activeType}-${activeQuery}-${showFavorites}-${sortBy}`}
+              className="pokemon-grid-v2"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              {pokemonList.map((p) => (
+                <motion.div key={p.id} variants={itemVariants}>
+                  <PokemonCard pokemon={p} />
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
 
           {!loading && pokemonList.length === 0 && (
-            <p className="status-msg">
-              {showFavorites ? "No tienes favoritos guardados" : `No se encontraron Pokémon para "${searchQuery}"`}
-            </p>
+            <div className="status-msg">
+               <p>{showFavorites ? "No favorites found" : `No Pokemon found`}</p>
+               {(activeQuery || activeType) && (
+                 <button 
+                    className="clear-filters-btn"
+                    onClick={() => { setActiveType(''); setSearchQuery(''); setActiveQuery(''); }}
+                    style={{ marginTop: '10px', textDecoration: 'underline', color: '#DC0A2D', cursor: 'pointer', background: 'none', border: 'none' }}
+                 >
+                   Clear filters
+                 </button>
+               )}
+            </div>
           )}
         </div>
       </main>

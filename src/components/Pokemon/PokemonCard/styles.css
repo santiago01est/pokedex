@@ -6,17 +6,17 @@
     flex-direction: column;
     position: relative;
     width: 100%;
-    aspect-ratio: 104 / 108;
+    aspect-ratio: 104 / 120;
+    /* Increased height slightly */
     cursor: pointer;
     padding: 0;
-    /* Remove padding to let the bg fit perfectly */
     overflow: hidden;
-    /* Ensure rounded corners on the background div */
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .pokemon-card-v2:hover {
     transform: translateY(-4px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pokemon-card-v2 .favorite-btn-star {
@@ -43,6 +43,7 @@
     justify-content: center;
     position: relative;
     width: 100%;
+    overflow: hidden;
 }
 
 .pokemon-card-image {
@@ -53,28 +54,32 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
+.skeleton-image {
+    width: 100%;
+    height: 100%;
+}
+
 .card-image-bg {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 40%;
-    /* Half-ish area from bottom like in the images */
     background-color: #EFEFEF;
     border-radius: 8px 8px 0 0;
-    /* Top rounded as per reference */
     z-index: 1;
 }
 
 .card-footer {
-    height: 28px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #EFEFEF;
-    /* Matches the bottom part of the image */
     width: 100%;
-    padding-bottom: 4px;
+    padding: 8px 4px;
+    gap: 4px;
+    min-height: 44px;
 }
 
 .pokemon-card-name {
@@ -82,4 +87,18 @@
     color: #1D1D1D;
     text-transform: capitalize;
     font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Mini badges for card */
+.card-types-row {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
+.card-types-row .type-badge {
+    font-size: 8px;
+    padding: 2px 6px;
+    height: auto;
 }

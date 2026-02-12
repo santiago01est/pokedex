@@ -1,12 +1,110 @@
-# React + Vite
+![Pokedex App Screenshot](https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🔴 Pokédex App
 
-Currently, two official plugins are available:
+A modern, high-performance **Progressive Web App (PWA)** built with **React**, **GraphQL**, and **Framer Motion**.  
+This Pokédex offers a smooth, app-like experience to explore the world of Pokémon, featuring real-time data fetching, offline capabilities, and fluid animations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## ✨ Key Features
+
+- **🔍 Advanced Search & Filter**: Instantly search by name or number, and filter by Pokémon type using an intuitive horizontal scroll interface.
+- **⚡ High Performance**: Utilizing **Lazy Loading** for images and Skeleton screens for a seamless user experience during data fetching.
+- **📱 PWA & Offline Support**: Installable on mobile and desktop. Loads instantly and works offline (caching strategies implemented via `vite-plugin-pwa`).
+- **🎨 Dynamic Theming**: The UI adapts its color palette based on the primary type of the viewed Pokémon.
+- **❤️ Favorites System**: Persist your favorite Pokémon using Redux Toolkit & LocalStorage.
+- **✨ Fluid Animations**: Powered by `framer-motion` for page transitions, list staggering, and "card deck" navigation effects.
+- **📊 Detailed Stats**: View base stats, physical attributes, and move sets in a clean, card-based layout.
+- **🌗 Sort Options**: Toggle sorting between Name (A-Z) and Pokedex Number (#ID).
+
+## 🛠️ Tech Stack
+
+- **Frontend Core**: [React 18+](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/) (Global state & Favorites)
+- **Data & API**: [Apollo Client](https://www.apollographql.com/) (consuming the [PokeAPI via GraphQL](https://beta.pokeapi.co/graphql/v1beta))
+- **Routing**: [React Router v6](https://reactrouter.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Styling**: Vanilla CSS (CSS Variables, Flexbox/Grid, Responsive Design)
+- **Testing**: [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/pokedex-app.git
+   cd pokedex-app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+### Building for Production
+
+To create a production-ready build:
+```bash
+npm run build
+```
+
+To preview the production build locally:
+```bash
+npm run preview
+```
+
+## 📂 Project Structure
+
+```
+src/
+├── assets/          # Static assets (images, icons)
+├── components/      # Reusable UI components
+│   ├── Buttons/     # Button variants (Favorite, etc.)
+│   ├── Inputs/      # Search, Filter inputs
+│   ├── Layout/      # Header, BottomNav, Wrappers
+│   ├── Pokemon/     # PokemonCard, TypeBadge
+│   └── ui/          # Generic UI (Loader, Skeletons, LazyImage)
+├── hooks/           # Custom React hooks
+├── pages/           # Page views (Home, PokemonDetail)
+├── services/        # API configuration (GraphQL queries, Apollo client)
+├── store/           # Redux slices and store configuration
+├── styles/          # Global styles, Design Tokens, Reset
+└── utils/           # Helper functions (validation, formatting)
+```
+
+## 🧪 Running Tests
+
+Run the test suite to ensure everything is working correctly:
+
+```bash
+npm run test
+```
+
+## 🔮 Future Roadmap
+
+- [ ] **Evolution Chain**: Visualizing the evolution path for each Pokémon.
+- [ ] **Abilities & Weaknesses**: Detailed type effectiveness charts.
+- [ ] **Infinite Scroll**: For smoother browsing of the full list.
+- [ ] **Comparisons**: Compare stats between two different Pokémon.
+- [ ] **Internationalization (i18n)**: Support for multiple languages.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).

@@ -5,13 +5,18 @@ export const GET_POKEMON_LIST = gql`
     pokemon(limit: $limit, offset: $offset, where: $where, order_by: $order_by) {
       id
       name
+      pokemontypes {
+        type {
+          name
+        }
+      }
     }
   }
 `;
 
 export const GET_POKEMON_DETAIL = gql`
   query GetPokemonDetail($id: Int!) {
-    pokemon(where: {id: {_eq: $id}}) {
+    pokemon(where: { id: { _eq: $id } }) {
       id
       name
       height
@@ -36,7 +41,7 @@ export const GET_POKEMON_DETAIL = gql`
         pokemoncolor {
           name
         }
-        pokemonspeciesflavortexts(where: {language_id: {_eq: 9}}, limit: 1) {
+        pokemonspeciesflavortexts(where: { language_id: { _eq: 9 } }, limit: 1) {
           flavor_text
         }
       }
