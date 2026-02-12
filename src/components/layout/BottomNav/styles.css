@@ -53,11 +53,7 @@
     color: #FFC107;
 }
 
-.sort-icon-nav {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1;
-}
+
 
 /* Hide on Desktop */
 @media (min-width: 768px) {

@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight, faWeightHanging, faRulerVertical } from '@fortawesome/free-solid-svg-icons';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client/react';
 import { GET_POKEMON_DETAIL } from '../../services/queries';
@@ -51,9 +53,7 @@ const PokemonDetail = () => {
     <div className={`pokemon-detail-page theme-${themeColor}`}>
       <header className="detail-header">
         <button className="back-btn" onClick={() => navigate('/')}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
+          <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <h1 className="detail-name">{pokemon.name}</h1>
         <span className="detail-id">#{String(pokemon.id).padStart(3, '0')}</span>
@@ -65,15 +65,11 @@ const PokemonDetail = () => {
 
       <div className="detail-hero">
         <button className="nav-arrow left" onClick={() => navigate(`/pokemon/${pokemon.id - 1}`)} disabled={pokemon.id <= 1}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
+          <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <img src={imageUrl} alt={pokemon.name} className="detail-image" />
         <button className="nav-arrow right" onClick={() => navigate(`/pokemon/${pokemon.id + 1}`)}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
+          <FontAwesomeIcon icon={faChevronRight} />
         </button>
       </div>
 
@@ -89,22 +85,14 @@ const PokemonDetail = () => {
           <div className="about-grid">
             <div className="about-item">
               <div className="item-value">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="1.5" className="icon">
-                  <path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
-                  <path d="M12 7v10"></path>
-                  <path d="M8 12h8"></path>
-                </svg>
+                <FontAwesomeIcon icon={faWeightHanging} className="icon" />
                 {pokemon.weight / 10} kg
               </div>
               <span className="item-label">Weight</span>
             </div>
             <div className="about-item divider">
               <div className="item-value">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="1.5" className="icon">
-                  <path d="M12 1v22"></path>
-                  <path d="M17 5H7"></path>
-                  <path d="M17 19H7"></path>
-                </svg>
+                <FontAwesomeIcon icon={faRulerVertical} className="icon" />
                 {pokemon.height / 10} m
               </div>
               <span className="item-label">Height</span>

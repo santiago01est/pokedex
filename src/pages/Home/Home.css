@@ -22,11 +22,10 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    background-color: #EFEFEF;
-    /* Subtle inner background like in some designs */
+
 }
 
-/* Base grid for the new cards */
+
 .pokemon-grid-v2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
