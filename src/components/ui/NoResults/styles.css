@@ -1,0 +1,87 @@
+.no-results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    width: 100%;
+}
+
+.no-results-image-wrapper {
+    width: 240px;
+    height: 240px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-results-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+    animation: psyduck-float 3s ease-in-out infinite;
+}
+
+@keyframes psyduck-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.no-results-title {
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    color: var(--pokecolor-black);
+    margin: 0 0 12px;
+}
+
+.no-results-text {
+    font-size: var(--fs-base);
+    color: var(--pokecolor-black);
+    margin: 0 0 32px;
+    max-width: 320px;
+    line-height: var(--lh-relaxed);
+}
+
+.no-results-btn {
+    background-color: var(--pokedex-red);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 32px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-bold);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(220, 10, 45, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s;
+}
+
+.no-results-btn:hover {
+    transform: translateY(-2px);
+    background-color: #b00824;
+    box-shadow: 0 6px 16px rgba(220, 10, 45, 0.3);
+}
+
+.no-results-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .no-results-image-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+
+    .no-results-title {
+        font-size: var(--fs-xl);
+    }
+}

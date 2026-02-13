@@ -12,6 +12,7 @@ import SortModal from '../../components/Modals/Sort/SortModal';
 import TypeFilter from '../../components/Inputs/TypeFilter/TypeFilter';
 import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Loader from '../../components/ui/Loader/Loader';
+import NoResults from '../../components/ui/NoResults/NoResults';
 import { useDebounce } from '../../hooks/useDebounce';
 import './Home.css';
 
@@ -256,18 +257,13 @@ export const Home = () => {
           )}
 
           {!loading && pokemonList.length === 0 && !showInitialLoader && (
-            <div className="status-msg">
-               <p>{showFavorites ? "No favorites found" : `No Pokemon found`}</p>
-               {(activeQuery || activeType) && (
-                 <button 
-                    className="clear-filters-btn"
-                    onClick={() => { setActiveType(''); setSearchQuery(''); setActiveQuery(''); }}
-                    style={{ marginTop: '10px', textDecoration: 'underline', color: 'var(--pokedex-red)', cursor: 'pointer', background: 'none', border: 'none' }}
-                 >
-                   Clear filters
-                 </button>
-               )}
-            </div>
+            <NoResults 
+              title={showFavorites ? "No Favorites Yet" : "No Pokémon Found"}
+              message={showFavorites 
+                ? "You haven't added any Pokémon to your favorites list." 
+                : `We couldn't find any results for "${activeQuery}". Try another search!`}
+              onClear={(activeQuery || activeType) ? () => { setActiveType(''); setSearchQuery(''); setActiveQuery(''); } : null}
+            />
           )}
         </div>
       </main>
