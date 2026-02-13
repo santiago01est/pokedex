@@ -1,0 +1,63 @@
+.pokedex-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 32px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-bold);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s, opacity 0.2s;
+    font-family: inherit;
+}
+
+.pokedex-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Primary Variant (Pokedex Red) */
+.btn-primary {
+    background-color: var(--pokedex-red);
+    color: white;
+    box-shadow: 0 4px 12px rgba(220, 10, 45, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background-color: #b00824;
+    box-shadow: 0 6px 16px rgba(220, 10, 45, 0.3);
+}
+
+/* Secondary/Action Variant (White) */
+.btn-secondary {
+    background-color: white;
+    color: var(--pokedex-red);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Outline/Light Variant */
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--pokedex-red);
+    color: var(--pokedex-red);
+    padding: 10px 30px;
+    /* Adjust for border */
+}
+
+.btn-outline:hover:not(:disabled) {
+    background-color: rgba(220, 10, 45, 0.05);
+    transform: translateY(-2px);
+}
+
+.pokedex-btn:active:not(:disabled) {
+    transform: translateY(0);
+}

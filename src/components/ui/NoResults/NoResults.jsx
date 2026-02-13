@@ -1,4 +1,5 @@
 import Psyduck from '../../../assets/Psyduck.png';
+import Button from '../../Buttons/common/Button';
 import './styles.css';
 
 const NoResults = ({ title, message, onClear }) => {
@@ -12,9 +13,9 @@ const NoResults = ({ title, message, onClear }) => {
         {message || "Oops! We couldn't find any Pokémon matching your search."}
       </p>
       {onClear && (
-        <button className="no-results-btn" onClick={onClear}>
+        <Button onClick={onClear}>
           Clear Filters
-        </button>
+        </Button>
       )}
     </div>
   );

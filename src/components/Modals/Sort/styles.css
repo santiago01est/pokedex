@@ -15,7 +15,7 @@
 
 .sort-modal-card {
     background-color: var(--pokedex-red);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     width: 160px;
     /* Slightly wider */
     overflow: hidden;
@@ -37,17 +37,17 @@
 
 .sort-modal-content {
     background-color: white;
-    border-radius: 8px;
-    padding: 16px 16px;
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--space-4);
 }
 
 .sort-option {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-3);
     cursor: pointer;
     position: relative;
     user-select: none;
@@ -83,7 +83,7 @@
 
 .option-label {
     font-size: var(--fs-base);
-    color: #1D1D1D;
+    color: var(--foreground);
     font-weight: var(--fw-medium);
 }
 

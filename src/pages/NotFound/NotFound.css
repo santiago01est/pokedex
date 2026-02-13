@@ -43,26 +43,3 @@
     margin: 0 0 32px;
     line-height: var(--lh-relaxed);
 }
-
-.not-found-btn {
-    background-color: white;
-    color: #72C5F3;
-    border: none;
-    border-radius: 30px;
-    padding: 14px 40px;
-    font-size: var(--fs-base);
-    font-weight: var(--fw-bold);
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.not-found-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.not-found-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}

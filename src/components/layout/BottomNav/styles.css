@@ -17,11 +17,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: var(--space-1);
     background: none;
     border: none;
-    color: #666;
-    padding: 8px;
+    color: var(--muted-foreground);
+    padding: var(--space-2);
     cursor: pointer;
     transition: all 0.2s ease;
     width: 100%;

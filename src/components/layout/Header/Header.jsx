@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse as faHouseSolid, faHashtag, faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarRegular, faHouse as faHouseRegular } from '@fortawesome/free-regular-svg-icons';
 import SearchBar from '../../Inputs/Search/SearchBar';
+import Button from '../../Buttons/common/Button';
 import { AlphaIcon } from '../../ui/Icons/SortIcons';
 import './styles.css';
 import Pokeball from '../../../assets/Pokeball.svg';
@@ -31,17 +32,31 @@ const Header = ({ searchQuery, setSearchQuery, searchError, onSortClick, showFav
             error={searchError} 
           />
           <div className="header-actions-btns desktop-only">
-            <button className={`nav-btn ${isHomeActive ? 'active' : ''}`} onClick={onHomeClick} aria-label="Home">
+            <Button 
+              variant="secondary" 
+              className={`nav-btn ${isHomeActive ? 'active' : ''}`} 
+              onClick={onHomeClick} 
+              aria-label="Home"
+              style={{ padding: 0, width: '40px', height: '40px', borderRadius: '50%' }}
+            >
               <FontAwesomeIcon icon={isHomeActive ? faHouseSolid : faHouseRegular} />
-            </button>
-            <button 
+            </Button>
+            <Button 
+              variant="secondary" 
               className={`fav-toggle-btn ${showFavorites ? 'active' : ''}`} 
               onClick={onToggleFavorites}
               aria-label="Favorites"
+              style={{ padding: 0, width: '40px', height: '40px', borderRadius: '50%' }}
             >
               <FontAwesomeIcon icon={showFavorites ? faStarSolid : faStarRegular} />
-            </button>
-            <button className="sort-btn" onClick={onSortClick} aria-label="Sort">
+            </Button>
+            <Button 
+              variant="secondary" 
+              className="sort-btn" 
+              onClick={onSortClick} 
+              aria-label="Sort"
+              style={{ padding: 0, width: '40px', height: '40px', borderRadius: '50%' }}
+            >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
                   key={sortBy}
@@ -58,7 +73,7 @@ const Header = ({ searchQuery, setSearchQuery, searchError, onSortClick, showFav
                   )}
                 </motion.span>
               </AnimatePresence>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

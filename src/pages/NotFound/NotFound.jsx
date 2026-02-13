@@ -1,6 +1,7 @@
 import Lottie from 'lottie-react';
 import { useNavigate } from 'react-router-dom';
 import pageNotFoundAnimation from '../../assets/pageNotFound.json';
+import Button from '../../components/Buttons/common/Button';
 import './NotFound.css';
 
 const NotFound = () => {
@@ -19,9 +20,9 @@ const NotFound = () => {
         <p className="not-found-text">
           Oops! This route doesn't exist in the Pokédex.
         </p>
-        <button className="not-found-btn" onClick={() => navigate('/')}>
+        <Button variant="secondary" onClick={() => navigate('/')}>
           Go Home
-        </button>
+        </Button>
       </div>
     </div>
   );
