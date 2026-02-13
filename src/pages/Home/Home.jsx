@@ -12,6 +12,7 @@ import SortModal from '../../components/Modals/Sort/SortModal';
 import TypeFilter from '../../components/Inputs/TypeFilter/TypeFilter';
 import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Loader from '../../components/ui/Loader/Loader';
+import { useDebounce } from '../../hooks/useDebounce';
 import './Home.css';
 
 const PAGE_SIZE = 20;
@@ -160,16 +161,22 @@ export const Home = () => {
     };
   }, []);
 
-  const handleSearchChange = (value) => {
-    setSearchQuery(value);
-    const validation = validateSearch(value);
-    
+  // Debounce the search query to avoid multiple API calls while typing
+  const debouncedSearchQuery = useDebounce(searchQuery, 400);
+
+  useEffect(() => {
+    const validation = validateSearch(debouncedSearchQuery);
     if (validation.isValid) {
       setSearchError(null);
       setActiveQuery(validation.value);
     } else {
       setSearchError(validation.error);
     }
+  }, [debouncedSearchQuery, setActiveQuery, setSearchError]);
+
+  const handleSearchChange = (value) => {
+    setSearchQuery(value);
+    // Validation is now handled by the useEffect watching the debounced value
   };
 
   const handleHomeClick = () => {
