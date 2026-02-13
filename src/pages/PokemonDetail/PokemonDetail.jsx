@@ -60,14 +60,6 @@ const PokemonDetail = () => {
     </div>
   );
 
-  // While loading initially (no displayPokemon), we might want a full screen loader or just wait.
-  // But since we want to show skeleton in the white card, we render the structure.
-  
-  // If we have displayPokemon, we use its color. If loading and no displayPokemon (first load), default.
-  // Actually, if we are navigating, we want to KEEP the old color until the new one arrives?
-  // Or if we specifically want the skeleton state, we can use the old color.
-  
-  // However, the prompt implies "white container stays where it is with loader... waiting for info".
   
   const pokemonToUse = displayPokemon;
   const themeColor = pokemonToUse?.pokemontypes[0]?.type.name || 'normal';
