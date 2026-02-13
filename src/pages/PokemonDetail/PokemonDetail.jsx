@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/client/react';
 import { GET_POKEMON_DETAIL } from '../../services/queries';
 import TypeBadge from '../../components/Pokemon/TypeBadge/TypeBadge';
 import DetailSkeleton from '../../components/ui/Skeletons/DetailSkeleton';
+import { useHomeState } from '../../context/HomeStateContext';
 import './styles.css';
 import Pokeball from '../../assets/Pokeball.svg';
 
@@ -34,6 +35,7 @@ const PokemonDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const { hasVisitedRef } = useHomeState();
   const direction = location.state?.direction || 0;
   
   // Use a local state to keep track of the current pokemon data being displayed
@@ -82,7 +84,10 @@ const PokemonDetail = () => {
   return (
     <div className={`pokemon-detail-page theme-${themeColor}`}>
       <header className="detail-header">
-        <button className="back-btn" onClick={() => navigate(-1)}>
+        <button 
+          className="back-btn" 
+          onClick={() => hasVisitedRef.current ? navigate(-1) : navigate('/')}
+        >
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <h1 className="detail-name">{loading ? '' : pokemonToUse?.name}</h1>
@@ -98,7 +103,7 @@ const PokemonDetail = () => {
       <div className="detail-hero">
         <button 
             className="nav-arrow left" 
-            onClick={() => navigate(`/pokemon/${currentId - 1}`, { state: { direction: -1 } })} 
+            onClick={() => navigate(`/pokemon/${currentId - 1}`, { state: { direction: -1 }, replace: true })} 
             disabled={currentId <= 1}
         >
           <FontAwesomeIcon icon={faChevronLeft} />
@@ -128,7 +133,7 @@ const PokemonDetail = () => {
 
         <button 
             className="nav-arrow right" 
-            onClick={() => navigate(`/pokemon/${currentId + 1}`, { state: { direction: 1 } })}
+            onClick={() => navigate(`/pokemon/${currentId + 1}`, { state: { direction: 1 }, replace: true })}
         >
            <FontAwesomeIcon icon={faChevronRight} />
         </button>
