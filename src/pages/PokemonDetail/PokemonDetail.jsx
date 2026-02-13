@@ -90,7 +90,7 @@ const PokemonDetail = () => {
   return (
     <div className={`pokemon-detail-page theme-${themeColor}`}>
       <header className="detail-header">
-        <button className="back-btn" onClick={() => navigate('/')}>
+        <button className="back-btn" onClick={() => navigate(-1)}>
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <h1 className="detail-name">{loading ? '' : pokemonToUse?.name}</h1>

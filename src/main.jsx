@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import './index.css'
 import App from './App.jsx'
 import { ThemeProvider } from './context/ThemeContext'
+import { HomeStateProvider } from './context/HomeStateContext'
 import { client } from './apollo/client'
 import { store, persistor } from './redux/store'
 
@@ -16,6 +17,7 @@ import { store, persistor } from './redux/store'
  * - Provider: Redux store for global state (favorites)
  * - PersistGate: Redux persistence (localStorage)
  * - ThemeProvider: Custom theme context
+ * - HomeStateProvider: Persists Home page state across navigation
  */
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -23,10 +25,13 @@ createRoot(document.getElementById('root')).render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider>
-            <App />
+            <HomeStateProvider>
+              <App />
+            </HomeStateProvider>
           </ThemeProvider>
         </PersistGate>
       </Provider>
     </ApolloProvider>
   </StrictMode>,
 )
+

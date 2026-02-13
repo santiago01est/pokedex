@@ -74,3 +74,19 @@
 .status-msg.error {
     color: var(--pokedex-red);
 }
+
+.infinite-scroll-sentinel {
+    width: 100%;
+    min-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+/* Add bottom padding for BottomNav clearance on mobile */
+@media (max-width: 767px) {
+    .pokedex-inner-container {
+        padding-bottom: 80px;
+    }
+}

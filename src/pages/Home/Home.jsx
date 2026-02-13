@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useQuery } from '@apollo/client/react';
+import { NetworkStatus } from '@apollo/client/core';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { GET_POKEMON_LIST } from '../../services/queries';
 import { validateSearch } from '../../utils/validation';
+import { useHomeState } from '../../context/HomeStateContext';
 import PokemonCard from '../../components/Pokemon/PokemonCard/PokemonCard';
 import Header from '../../components/layout/Header/Header';
 import SortModal from '../../components/Modals/Sort/SortModal';
@@ -12,28 +14,53 @@ import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Loader from '../../components/ui/Loader/Loader';
 import './Home.css';
 
+const PAGE_SIZE = 20;
+const FETCH_MORE_DELAY = 1000;
+
 export const Home = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchError, setSearchError] = useState(null);
-  const [activeQuery, setActiveQuery] = useState('');
-  const [activeType, setActiveType] = useState('');
-  const [sortBy, setSortBy] = useState('name');
+  // Persistent state from context (survives navigation)
+  const {
+    searchQuery, setSearchQuery,
+    searchError, setSearchError,
+    activeQuery, setActiveQuery,
+    activeType, setActiveType,
+    sortBy, setSortBy,
+    showFavorites, setShowFavorites,
+    scrollPositionRef,
+    hasVisitedRef,
+  } = useHomeState();
+
+  // Local state (resets on mount, that's fine)
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
-  const [showFavorites, setShowFavorites] = useState(false);
-  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(hasVisitedRef.current);
+  const [hasMore, setHasMore] = useState(true);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
   
+  // Refs for IntersectionObserver
+  const isFetchingRef = useRef(false);
+  const hasMoreRef = useRef(true);
+  const dataLengthRef = useRef(0);
+  const observerRef = useRef(null);
+
   const favoriteItems = useSelector((state) => state.favorites.items);
 
+  // Skip intro loader on subsequent visits
   useEffect(() => {
+    if (hasVisitedRef.current) {
+      setMinTimeElapsed(true);
+      return;
+    }
     const timer = setTimeout(() => {
       setMinTimeElapsed(true);
+      hasVisitedRef.current = true;
     }, 1800);
     return () => clearTimeout(timer);
-  }, []);
+  }, [hasVisitedRef]);
   
-  const { loading, error, data } = useQuery(GET_POKEMON_LIST, {
+  const { loading, error, data, fetchMore, networkStatus } = useQuery(GET_POKEMON_LIST, {
     variables: { 
-      limit: 151,
+      limit: PAGE_SIZE,
+      offset: 0,
       where: {
         _and: [
           activeQuery ? { name: { _ilike: `%${activeQuery}%` } } : {},
@@ -42,8 +69,96 @@ export const Home = () => {
       },
       order_by: { [sortBy]: 'asc' }
     },
-    skip: showFavorites 
+    skip: showFavorites,
+    notifyOnNetworkStatusChange: true,
   });
+
+  const isInitialLoading = networkStatus === NetworkStatus.loading || networkStatus === NetworkStatus.setVariables;
+
+  // Keep refs in sync
+  useEffect(() => { isFetchingRef.current = isFetchingMore; }, [isFetchingMore]);
+  useEffect(() => { hasMoreRef.current = hasMore; }, [hasMore]);
+
+  const pokemonCount = data?.pokemon?.length || 0;
+  useEffect(() => { dataLengthRef.current = pokemonCount; }, [pokemonCount]);
+
+  // Determine hasMore when data changes
+  useEffect(() => {
+    if (pokemonCount > 0 && pokemonCount % PAGE_SIZE !== 0) {
+      setHasMore(false);
+    }
+  }, [pokemonCount]);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setHasMore(true);
+  }, [activeQuery, activeType, sortBy]);
+
+  // Save scroll position before unmounting
+  useEffect(() => {
+    return () => {
+      scrollPositionRef.current = window.scrollY;
+    };
+  }, [scrollPositionRef]);
+
+  // Restore scroll position after data loads
+  useEffect(() => {
+    if (pokemonCount > 0 && scrollPositionRef.current > 0) {
+      // Use requestAnimationFrame to ensure DOM is painted
+      requestAnimationFrame(() => {
+        window.scrollTo(0, scrollPositionRef.current);
+      });
+    }
+  }, [pokemonCount, scrollPositionRef]);
+
+  // Sentinel ref callback using IntersectionObserver
+  const sentinelRef = useCallback((node) => {
+    if (observerRef.current) observerRef.current.disconnect();
+    if (!node) return;
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        if (
+          entries[0].isIntersecting &&
+          hasMoreRef.current &&
+          !isFetchingRef.current
+        ) {
+          isFetchingRef.current = true;
+          setIsFetchingMore(true);
+
+          setTimeout(async () => {
+            try {
+              const currentLength = dataLengthRef.current;
+              const { data: moreData } = await fetchMore({
+                variables: {
+                  offset: currentLength,
+                },
+              });
+              if (!moreData?.pokemon?.length || moreData.pokemon.length < PAGE_SIZE) {
+                hasMoreRef.current = false;
+                setHasMore(false);
+              }
+            } catch (err) {
+              console.error('Error fetching more pokemon:', err);
+            } finally {
+              isFetchingRef.current = false;
+              setIsFetchingMore(false);
+            }
+          }, FETCH_MORE_DELAY);
+        }
+      },
+      { rootMargin: '100px' }
+    );
+
+    observerRef.current.observe(node);
+  }, [fetchMore]);
+
+  // Cleanup observer on unmount
+  useEffect(() => {
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, []);
 
   const handleSearchChange = (value) => {
     setSearchQuery(value);
@@ -63,6 +178,7 @@ export const Home = () => {
     setActiveQuery('');
     setActiveType('');
     setShowFavorites(false);
+    scrollPositionRef.current = 0;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -79,20 +195,12 @@ export const Home = () => {
 
   const pokemonList = showFavorites ? displayedFavorites : (data?.pokemon || []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05
-      }
-    }
-  };
+  const hasData = pokemonCount > 0;
+  const showInitialLoader = (isInitialLoading || !minTimeElapsed) && !hasData && !showFavorites;
+  const showGrid = (hasData && minTimeElapsed) || showFavorites;
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  // Skip entrance animation when returning from detail
+  const isReturning = hasVisitedRef.current && scrollPositionRef.current > 0;
 
   return (
     <div className="pokedex-app">
@@ -111,27 +219,36 @@ export const Home = () => {
         <div className="pokedex-inner-container">
           <TypeFilter activeType={activeType} onTypeChange={setActiveType} />
 
-          {(loading || !minTimeElapsed) && !showFavorites && <Loader />} 
+          {showInitialLoader && <Loader />} 
           
           {error && !showFavorites && <p className="status-msg error">Error: {error.message}</p>}
           
-          {((!loading && minTimeElapsed) || showFavorites) && (
-            <motion.div 
+          {showGrid && (
+            <div 
               key={`${activeType}-${activeQuery}-${showFavorites}-${sortBy}`}
               className="pokemon-grid-v2"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
             >
-              {pokemonList.map((p) => (
-                <motion.div key={p.id} variants={itemVariants}>
+              {pokemonList.map((p, index) => (
+                <motion.div 
+                  key={p.id} 
+                  initial={isReturning ? false : { opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: isReturning ? 0 : (index % PAGE_SIZE) * 0.03 }}
+                >
                   <PokemonCard pokemon={p} />
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           )}
 
-          {!loading && pokemonList.length === 0 && (
+          {/* Sentinel + loading indicator for infinite scroll */}
+          {showGrid && hasMore && !showFavorites && (
+            <div ref={sentinelRef} className="infinite-scroll-sentinel">
+              {isFetchingMore && <Loader small />}
+            </div>
+          )}
+
+          {!loading && pokemonList.length === 0 && !showInitialLoader && (
             <div className="status-msg">
                <p>{showFavorites ? "No favorites found" : `No Pokemon found`}</p>
                {(activeQuery || activeType) && (

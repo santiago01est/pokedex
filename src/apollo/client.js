@@ -10,7 +10,14 @@ export const client = new ApolloClient({
         typePolicies: {
             Query: {
                 fields: {
-                    //  add pagination or other field policies
+                    pokemon: {
+                        keyArgs: ["where", "order_by"],
+                        merge(existing = [], incoming, { args }) {
+                            const offset = args?.offset ?? 0;
+                            if (offset === 0) return incoming;
+                            return [...existing, ...incoming];
+                        },
+                    },
                 },
             },
         },
