@@ -1,7 +1,8 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Home } from './pages/Home/Home';
 import PokemonDetail from './pages/PokemonDetail/PokemonDetail';
+import NotFound from './pages/NotFound/NotFound';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -11,7 +12,7 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/pokemon/:id" element={<PokemonDetail />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   );
@@ -28,3 +29,4 @@ function App() {
 }
 
 export default App;
+
