@@ -1,7 +1,8 @@
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faHashtag, faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+import { faHouse as faHouseSolid, faHashtag, faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarRegular, faHouse as faHouseRegular } from '@fortawesome/free-regular-svg-icons';
 import SearchBar from '../../Inputs/Search/SearchBar';
 import { AlphaIcon } from '../../ui/Icons/SortIcons';
 import './styles.css';
@@ -9,6 +10,9 @@ import Pokeball from '../../../assets/Pokeball.svg';
 
 
 const Header = ({ searchQuery, setSearchQuery, searchError, onSortClick, showFavorites, onToggleFavorites, onHomeClick, sortBy }) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
     <header className="pokedex-header">
       <div className="header-container">
@@ -28,7 +32,7 @@ const Header = ({ searchQuery, setSearchQuery, searchError, onSortClick, showFav
           />
           <div className="header-actions-btns desktop-only">
             <button className="nav-btn" onClick={onHomeClick} aria-label="Home">
-              <FontAwesomeIcon icon={faHouse} />
+              <FontAwesomeIcon icon={isHomePage ? faHouseSolid : faHouseRegular} />
             </button>
             <button 
               className={`fav-toggle-btn ${showFavorites ? 'active' : ''}`} 

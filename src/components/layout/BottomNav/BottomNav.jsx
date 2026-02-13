@@ -1,17 +1,21 @@
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faHashtag, faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+import { faHouse as faHouseSolid, faHashtag, faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarRegular, faHouse as faHouseRegular } from '@fortawesome/free-regular-svg-icons';
 import { AlphaIcon } from '../../ui/Icons/SortIcons';
 import './styles.css';
 
 
 const BottomNav = ({ showFavorites, onToggleFavorites, onSortClick, onHomeClick, sortBy }) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
     <nav className="bottom-nav">
       <button className="nav-item" onClick={onHomeClick}>
         <div className="nav-icon">
-          <FontAwesomeIcon icon={faHouse} />
+          <FontAwesomeIcon icon={isHomePage ? faHouseSolid : faHouseRegular} />
         </div>
         <span>Home</span>
       </button>
