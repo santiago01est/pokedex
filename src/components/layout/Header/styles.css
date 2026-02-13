@@ -71,7 +71,7 @@
 .nav-btn svg {
     width: 20px;
     height: 20px;
-    color: #DC0A2D;
+    color: var(--pokedex-red);
 }
 
 .fav-toggle-btn {
@@ -92,12 +92,12 @@
 .fav-toggle-btn svg {
     width: 20px;
     height: 20px;
-    color: #DC0A2D;
+    color: var(--pokedex-red);
     transition: color 0.2s ease;
 }
 
 .fav-toggle-btn.active svg {
-    color: #DC0A2D;
+    color: var(--pokedex-red);
 }
 
 .fav-toggle-btn.active {
@@ -122,7 +122,7 @@
 .sort-btn svg {
     width: 20px;
     height: 20px;
-    color: #DC0A2D;
+    color: var(--pokedex-red);
 }
 
 @media (min-width: 768px) {

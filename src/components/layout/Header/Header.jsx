@@ -11,7 +11,7 @@ import Pokeball from '../../../assets/Pokeball.svg';
 
 const Header = ({ searchQuery, setSearchQuery, searchError, onSortClick, showFavorites, onToggleFavorites, onHomeClick, sortBy }) => {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isHomeActive = location.pathname === '/' && !showFavorites;
 
   return (
     <header className="pokedex-header">
@@ -32,7 +32,7 @@ const Header = ({ searchQuery, setSearchQuery, searchError, onSortClick, showFav
           />
           <div className="header-actions-btns desktop-only">
             <button className="nav-btn" onClick={onHomeClick} aria-label="Home">
-              <FontAwesomeIcon icon={isHomePage ? faHouseSolid : faHouseRegular} />
+              <FontAwesomeIcon icon={isHomeActive ? faHouseSolid : faHouseRegular} />
             </button>
             <button 
               className={`fav-toggle-btn ${showFavorites ? 'active' : ''}`} 

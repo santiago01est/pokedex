@@ -50,7 +50,7 @@
 }
 
 .nav-item.active .nav-icon svg {
-    color: #FFC107;
+    color: var(--pokedex-red);
 }
 
 

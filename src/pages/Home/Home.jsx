@@ -138,7 +138,7 @@ export const Home = () => {
                  <button 
                     className="clear-filters-btn"
                     onClick={() => { setActiveType(''); setSearchQuery(''); setActiveQuery(''); }}
-                    style={{ marginTop: '10px', textDecoration: 'underline', color: '#DC0A2D', cursor: 'pointer', background: 'none', border: 'none' }}
+                    style={{ marginTop: '10px', textDecoration: 'underline', color: 'var(--pokedex-red)', cursor: 'pointer', background: 'none', border: 'none' }}
                  >
                    Clear filters
                  </button>

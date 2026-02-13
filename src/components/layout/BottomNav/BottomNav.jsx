@@ -9,13 +9,13 @@ import './styles.css';
 
 const BottomNav = ({ showFavorites, onToggleFavorites, onSortClick, onHomeClick, sortBy }) => {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isHomeActive = location.pathname === '/' && !showFavorites;
 
   return (
     <nav className="bottom-nav">
-      <button className="nav-item" onClick={onHomeClick}>
+      <button className={`nav-item ${isHomeActive ? 'active' : ''}`} onClick={onHomeClick}>
         <div className="nav-icon">
-          <FontAwesomeIcon icon={isHomePage ? faHouseSolid : faHouseRegular} />
+          <FontAwesomeIcon icon={isHomeActive ? faHouseSolid : faHouseRegular} />
         </div>
         <span>Home</span>
       </button>

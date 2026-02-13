@@ -94,7 +94,7 @@
 
 .scroll-btn:hover {
     background: #f9f9f9;
-    color: #DC0A2D;
+    color: var(--pokedex-red);
     transform: scale(1.1);
 }
 
