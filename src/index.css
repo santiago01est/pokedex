@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @import url('./styles/tokens.css');
 @import url('./styles/reset.css');
 
@@ -10,19 +11,57 @@
 
 h1 {
   font-size: var(--fs-4xl);
-  font-weight: 800;
-  letter-spacing: -0.025em;
+  font-weight: var(--fw-extrabold);
+  line-height: var(--lh-tight);
 }
 
 h2 {
   font-size: var(--fs-3xl);
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
 }
 
 h3 {
   font-size: var(--fs-2xl);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+}
+
+/* Typography Utilities */
+.text-body-lg {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-base);
+}
+
+.text-body-md {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-base);
+}
+
+.text-body-sm {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-base);
+}
+
+.text-caption {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-base);
+}
+
+.font-bold {
+  font-weight: var(--fw-bold);
+}
+
+.font-semibold {
+  font-weight: var(--fw-semibold);
+}
+
+.font-medium {
+  font-weight: var(--fw-medium);
 }
 
 .container {

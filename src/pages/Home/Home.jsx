@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client/react';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { GET_POKEMON_LIST } from '../../services/queries';
 import { validateSearch } from '../../utils/validation';
 import PokemonCard from '../../components/Pokemon/PokemonCard/PokemonCard';
-import Header from '../../components/Layout/Header/Header';
+import Header from '../../components/layout/Header/Header';
 import SortModal from '../../components/Modals/Sort/SortModal';
 import TypeFilter from '../../components/Inputs/TypeFilter/TypeFilter';
-import BottomNav from '../../components/Layout/BottomNav/BottomNav';
+import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Loader from '../../components/ui/Loader/Loader';
 import './Home.css';
 
@@ -20,8 +20,16 @@ export const Home = () => {
   const [sortBy, setSortBy] = useState('name');
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   
   const favoriteItems = useSelector((state) => state.favorites.items);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMinTimeElapsed(true);
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, []);
   
   const { loading, error, data } = useQuery(GET_POKEMON_LIST, {
     variables: { 
@@ -96,17 +104,18 @@ export const Home = () => {
         onToggleFavorites={() => setShowFavorites(!showFavorites)}
         onSortClick={() => setIsSortModalOpen(true)} 
         onHomeClick={handleHomeClick}
+        sortBy={sortBy}
       />
       
       <main className="pokedex-content">
         <div className="pokedex-inner-container">
           <TypeFilter activeType={activeType} onTypeChange={setActiveType} />
 
-          {loading && !showFavorites && <Loader />} 
+          {(loading || !minTimeElapsed) && !showFavorites && <Loader />} 
           
           {error && !showFavorites && <p className="status-msg error">Error: {error.message}</p>}
           
-          {(!loading || showFavorites) && (
+          {((!loading && minTimeElapsed) || showFavorites) && (
             <motion.div 
               key={`${activeType}-${activeQuery}-${showFavorites}-${sortBy}`}
               className="pokemon-grid-v2"
@@ -144,6 +153,7 @@ export const Home = () => {
         onToggleFavorites={() => setShowFavorites(!showFavorites)}
         onSortClick={() => setIsSortModalOpen(true)}
         onHomeClick={handleHomeClick}
+        sortBy={sortBy}
       />
 
       {isSortModalOpen && (

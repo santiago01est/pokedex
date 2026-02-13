@@ -12,7 +12,19 @@ const PokemonCard = ({ pokemon }) => {
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 
   return (
-    <div className="pokemon-card-v2" onClick={() => navigate(`/pokemon/${id}`)}>
+    <div 
+      className="pokemon-card-v2" 
+      onClick={() => navigate(`/pokemon/${id}`)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          navigate(`/pokemon/${id}`);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${name}`}
+    >
       <FavoriteButton pokemon={pokemon} />
       <div className="card-id">#{String(id).padStart(3, '0')}</div>
       <div className="card-image-wrapper">

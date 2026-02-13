@@ -1,4 +1,44 @@
+import { motion, AnimatePresence } from 'framer-motion';
 import './styles.css';
+
+// Overlay variants
+const overlayVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { duration: 0.2 }
+  },
+  exit: { 
+    opacity: 0,
+    transition: { duration: 0.2, delay: 0.1 } 
+  }
+};
+
+// Modal card variants
+const modalVariants = {
+  hidden: { 
+    scale: 0.8, 
+    opacity: 0,
+    y: 10
+  },
+  visible: { 
+    scale: 1, 
+    opacity: 1,
+    y: 0,
+    transition: { 
+      type: "spring",
+      stiffness: 300,
+      damping: 25,
+      duration: 0.3
+    }
+  },
+  exit: { 
+    scale: 0.8, 
+    opacity: 0,
+    y: 10,
+    transition: { duration: 0.2 }
+  }
+};
 
 const SortModal = ({ selectedSort, onSortChange, onClose }) => {
   const options = [
@@ -7,8 +47,19 @@ const SortModal = ({ selectedSort, onSortChange, onClose }) => {
   ];
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="sort-modal-card" onClick={(e) => e.stopPropagation()}>
+    <motion.div 
+      className="modal-overlay" 
+      onClick={onClose}
+      variants={overlayVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <motion.div 
+        className="sort-modal-card" 
+        onClick={(e) => e.stopPropagation()}
+        variants={modalVariants}
+      >
         <div className="sort-modal-header">
           <h2 className="sort-modal-title">Sort by:</h2>
         </div>
@@ -22,16 +73,18 @@ const SortModal = ({ selectedSort, onSortChange, onClose }) => {
                 checked={selectedSort === option.value}
                 onChange={() => {
                   onSortChange(option.value);
-                  onClose();
+                  setTimeout(onClose, 150); // Small delay to see the selection before closing
                 }}
               />
-              <span className="radio-custom"></span>
+              <div className="radio-custom">
+                {selectedSort === option.value && <div className="radio-inner" />}
+              </div>
               <span className="option-label">{option.label}</span>
             </label>
           ))}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

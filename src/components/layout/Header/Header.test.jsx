@@ -22,6 +22,7 @@ describe('Header', () => {
     showFavorites: false,
     onToggleFavorites: vi.fn(),
     onHomeClick: vi.fn(),
+    sortBy: 'id',
   };
 
   it('renders the title correctly', () => {

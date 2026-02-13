@@ -1,12 +1,16 @@
+import Lottie from 'lottie-react';
+import PokeballAnimation from '../../../assets/Pokeball.json';
 import './Loader.css';
-import Pokeball from '../../../assets/Pokeball.svg';
 
 const Loader = ({ fullPage = false }) => {
   return (
     <div className={`loader-container ${fullPage ? 'full-page' : ''}`}>
       <div className="loader-wrapper">
-        <div className="loader-circle"></div>
-        <img src={Pokeball} alt="Loading..." className="loader-pokeball" />
+        <Lottie 
+          animationData={PokeballAnimation} 
+          loop={true} 
+          className="loader-lottie"
+        />
       </div>
     </div>
   );

@@ -15,15 +15,38 @@
     --ring: #6366f1;
 
     /* Typography */
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --fs-xs: 0.75rem;
-    --fs-sm: 0.875rem;
-    --fs-base: 1rem;
-    --fs-lg: 1.125rem;
+    --font-primary: 'Poppins', sans-serif;
+    --font-sans: var(--font-primary);
+
+    /* Font Sizes */
+    --fs-xs: 0.625rem;
+    /* 10px */
+    --fs-sm: 0.75rem;
+    /* 12px */
+    --fs-base: 0.875rem;
+    /* 14px */
+    --fs-lg: 1rem;
+    /* 16px */
     --fs-xl: 1.25rem;
+    /* 20px */
     --fs-2xl: 1.5rem;
-    --fs-3xl: 1.875rem;
-    --fs-4xl: 2.25rem;
+    /* 24px */
+    --fs-3xl: 2rem;
+    /* 32px */
+    --fs-4xl: 2.5rem;
+    /* 40px */
+
+    /* Font Weights */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-extrabold: 800;
+
+    /* Line Heights */
+    --lh-tight: 1.1;
+    --lh-base: 1.5;
+    --lh-relaxed: 1.625;
 
     /* Spacing */
     --space-1: 0.25rem;

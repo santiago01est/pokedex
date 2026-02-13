@@ -34,10 +34,10 @@
 
 .header-title {
     color: white;
-    font-size: 32px;
-    font-weight: 800;
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-extrabold);
     margin: 0;
-    line-height: 1;
+    line-height: var(--lh-tight);
 }
 
 .header-controls {

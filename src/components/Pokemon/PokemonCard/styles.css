@@ -30,9 +30,9 @@
     position: absolute;
     top: 8px;
     right: 12px;
-    font-size: 10px;
-    color: #666;
-    font-weight: 400;
+    font-size: var(--fs-xs);
+    color: var(--muted-foreground);
+    font-weight: var(--fw-regular);
     z-index: 10;
 }
 
@@ -83,11 +83,11 @@
 }
 
 .pokemon-card-name {
-    font-size: 12px;
+    font-size: var(--fs-sm);
     color: #1D1D1D;
     text-transform: capitalize;
-    font-weight: 500;
-    line-height: 1.2;
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-tight);
 }
 
 /* Mini badges for card */

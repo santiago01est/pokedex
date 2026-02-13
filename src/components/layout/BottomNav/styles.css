@@ -41,8 +41,8 @@
 }
 
 .nav-item span {
-    font-size: 10px;
-    font-weight: 500;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
 }
 
 .nav-item.active {

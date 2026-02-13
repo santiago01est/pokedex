@@ -9,6 +9,14 @@ import { ThemeProvider } from './context/ThemeContext'
 import { client } from './apollo/client'
 import { store, persistor } from './redux/store'
 
+/**
+ * Entry point of the Pokédex application.
+ * Configures the following providers:
+ * - ApolloProvider: GraphQL client for PokeAPI
+ * - Provider: Redux store for global state (favorites)
+ * - PersistGate: Redux persistence (localStorage)
+ * - ThemeProvider: Custom theme context
+ */
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ApolloProvider client={client}>

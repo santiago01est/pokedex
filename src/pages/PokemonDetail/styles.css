@@ -8,79 +8,98 @@
     padding-bottom: 24px;
     background-color: var(--type-normal);
     transition: background-color 0.5s ease-in-out;
+    --theme-color: var(--type-normal);
 }
 
 /* Background dynamics based on theme (Types or API Colors) */
 .pokemon-detail-page.theme-bug {
     background-color: var(--type-bug);
+    --theme-color: var(--type-bug);
 }
 
 .pokemon-detail-page.theme-dark {
     background-color: var(--type-dark);
+    --theme-color: var(--type-dark);
 }
 
 .pokemon-detail-page.theme-dragon {
     background-color: var(--type-dragon);
+    --theme-color: var(--type-dragon);
 }
 
 .pokemon-detail-page.theme-electric {
     background-color: var(--type-electric);
+    --theme-color: var(--type-electric);
 }
 
 .pokemon-detail-page.theme-fairy {
     background-color: var(--type-fairy);
+    --theme-color: var(--type-fairy);
 }
 
 .pokemon-detail-page.theme-fighting {
     background-color: var(--type-fighting);
+    --theme-color: var(--type-fighting);
 }
 
 .pokemon-detail-page.theme-fire {
     background-color: var(--type-fire);
+    --theme-color: var(--type-fire);
 }
 
 .pokemon-detail-page.theme-flying {
     background-color: var(--type-flying);
+    --theme-color: var(--type-flying);
 }
 
 .pokemon-detail-page.theme-ghost {
     background-color: var(--type-ghost);
+    --theme-color: var(--type-ghost);
 }
 
 .pokemon-detail-page.theme-grass {
     background-color: var(--type-grass);
+    --theme-color: var(--type-grass);
 }
 
 .pokemon-detail-page.theme-ground {
     background-color: var(--type-ground);
+    --theme-color: var(--type-ground);
 }
 
 .pokemon-detail-page.theme-ice {
     background-color: var(--type-ice);
+    --theme-color: var(--type-ice);
 }
 
 .pokemon-detail-page.theme-normal {
     background-color: var(--type-normal);
+    --theme-color: var(--type-normal);
 }
 
 .pokemon-detail-page.theme-poison {
     background-color: var(--type-poison);
+    --theme-color: var(--type-poison);
 }
 
 .pokemon-detail-page.theme-psychic {
     background-color: var(--type-psychic);
+    --theme-color: var(--type-psychic);
 }
 
 .pokemon-detail-page.theme-rock {
     background-color: var(--type-rock);
+    --theme-color: var(--type-rock);
 }
 
 .pokemon-detail-page.theme-steel {
     background-color: var(--type-steel);
+    --theme-color: var(--type-steel);
 }
 
 .pokemon-detail-page.theme-water {
     background-color: var(--type-water);
+    --theme-color: var(--type-water);
 }
 
 .detail-header {
@@ -309,7 +328,7 @@
 .stat-bar-bg {
     flex: 1;
     height: 4px;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: color-mix(in srgb, var(--theme-color), transparent 80%);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -498,42 +517,52 @@
 /* API Theme Colors */
 .pokemon-detail-page.theme-black {
     background-color: var(--pokecolor-black);
+    --theme-color: var(--pokecolor-black);
 }
 
 .pokemon-detail-page.theme-blue {
     background-color: var(--pokecolor-blue);
+    --theme-color: var(--pokecolor-blue);
 }
 
 .pokemon-detail-page.theme-brown {
     background-color: var(--pokecolor-brown);
+    --theme-color: var(--pokecolor-brown);
 }
 
 .pokemon-detail-page.theme-gray {
     background-color: var(--pokecolor-gray);
+    --theme-color: var(--pokecolor-gray);
 }
 
 .pokemon-detail-page.theme-green {
     background-color: var(--pokecolor-green);
+    --theme-color: var(--pokecolor-green);
 }
 
 .pokemon-detail-page.theme-pink {
     background-color: var(--pokecolor-pink);
+    --theme-color: var(--pokecolor-pink);
 }
 
 .pokemon-detail-page.theme-purple {
     background-color: var(--pokecolor-purple);
+    --theme-color: var(--pokecolor-purple);
 }
 
 .pokemon-detail-page.theme-red {
     background-color: var(--pokecolor-red);
+    --theme-color: var(--pokecolor-red);
 }
 
 .pokemon-detail-page.theme-white {
     background-color: var(--pokecolor-white);
+    --theme-color: var(--pokecolor-white);
 }
 
 .pokemon-detail-page.theme-yellow {
     background-color: var(--pokecolor-yellow);
+    --theme-color: var(--pokecolor-yellow);
 }
 
 /* API Class Colors */

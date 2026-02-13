@@ -1,9 +1,12 @@
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faHashtag, faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+import { AlphaIcon } from '../../ui/Icons/SortIcons';
 import './styles.css';
 
-const BottomNav = ({ showFavorites, onToggleFavorites, onSortClick, onHomeClick }) => {
+
+const BottomNav = ({ showFavorites, onToggleFavorites, onSortClick, onHomeClick, sortBy }) => {
   return (
     <nav className="bottom-nav">
       <button className="nav-item" onClick={onHomeClick}>
@@ -22,7 +25,22 @@ const BottomNav = ({ showFavorites, onToggleFavorites, onSortClick, onHomeClick 
 
       <button className="nav-item" onClick={onSortClick}>
         <div className="nav-icon">
-          <FontAwesomeIcon icon={faHashtag} />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={sortBy}
+              initial={{ opacity: 0, y: 10, scale: 0.5 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.5 }}
+              transition={{ duration: 0.2 }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px' }}
+            >
+              {sortBy === 'name' ? (
+                <AlphaIcon />
+              ) : (
+                <FontAwesomeIcon icon={faHashtag} />
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
         <span>Filtro</span>
       </button>

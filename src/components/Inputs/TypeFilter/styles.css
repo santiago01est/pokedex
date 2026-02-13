@@ -1,35 +1,60 @@
+.type-filter-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 .type-filter-container {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: #ddd transparent;
+    width: 100%;
+    padding: 10px 4px;
+    /* Add horizontal padding to avoid cutting off shadows */
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.type-filter-container::-webkit-scrollbar {
+    display: none;
 }
 
 .type-filter-btn {
-    padding: 8px 12px;
+    padding: 8px 16px;
     border-radius: 20px;
     border: 1px solid #eee;
     background: white;
     cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #666;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    color: var(--muted-foreground);
     white-space: nowrap;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    height: 40px;
 }
 
 .type-filter-btn:hover {
     background: #f5f5f5;
     transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .type-filter-btn.active {
+    /* Use a fallback background if var isn't set */
     background: var(--type-color, #333);
     color: white;
     border-color: transparent;
@@ -48,12 +73,56 @@
     border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Scrollbar styling for webkit */
-.type-filter-container::-webkit-scrollbar {
-    height: 4px;
+/* Scroll Buttons */
+.scroll-btn {
+    display: none;
+    /* Hidden by default (mobile) */
+    position: absolute;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    transition: all 0.2s ease;
 }
 
-.type-filter-container::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 4px;
+.scroll-btn:hover {
+    background: #f9f9f9;
+    color: #DC0A2D;
+    transform: scale(1.1);
+}
+
+.scroll-btn:active {
+    transform: scale(0.95);
+}
+
+.scroll-btn.left {
+    left: -16px;
+}
+
+.scroll-btn.right {
+    right: -16px;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+    .type-filter-wrapper {
+        padding: 0 20px;
+        /* Make space for buttons */
+    }
+
+    .scroll-btn {
+        display: flex;
+    }
+
+    .scroll-btn:disabled {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
