@@ -100,9 +100,9 @@
     color: var(--pokedex-red);
 }
 
+.nav-btn.active,
 .fav-toggle-btn.active {
     background-color: #f8f9fa;
-    transform: scale(0.95);
 }
 
 .sort-btn {

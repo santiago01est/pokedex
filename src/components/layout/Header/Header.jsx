@@ -31,7 +31,7 @@ const Header = ({ searchQuery, setSearchQuery, searchError, onSortClick, showFav
             error={searchError} 
           />
           <div className="header-actions-btns desktop-only">
-            <button className="nav-btn" onClick={onHomeClick} aria-label="Home">
+            <button className={`nav-btn ${isHomeActive ? 'active' : ''}`} onClick={onHomeClick} aria-label="Home">
               <FontAwesomeIcon icon={isHomeActive ? faHouseSolid : faHouseRegular} />
             </button>
             <button 
